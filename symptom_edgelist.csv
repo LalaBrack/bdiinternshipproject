@@ -1,0 +1,141 @@
+node 1,node 2,weight
+cancer,asthma,0.0268981
+chest pain,back pain,0.0234384
+cough,blood in septum,0.0239145
+cough,convulsions,0.0225457
+diarrhoea,baldness,0.0205551
+diarrhoea,blood in stool,0.0687159
+diarrhoea,cough,0.025999
+difficulty breathing,asthma,0.0707625
+difficulty breathing,cough,0.0239145
+eye problem,chest pain,0.0399444
+fever,convulsions,0.0771981
+fever,cough,0.0752527
+fever,diarrhoea,0.0287206
+general pain,back pain,0.0187106
+general pain,blood in stool,0.020946
+general pain,chest pain,0.0434014
+headache,dehydration,0.0174654
+hydrocele,asthma,0.0339186
+hypertension,diabetes,0.0300926
+joint pain,chest pain,0.0172661
+joint pain,general pain,0.0415641
+leprosy,general pain,0.2354821
+malaria,fever,0.1195236
+nausea,convulsions,0.0460344
+nose bleeds,asthma,0.0226048
+nose bleeds,measles,0.0410473
+persistent cough,nose bleeds,0.1764587
+pneumonia,measles,0.0202504
+removed uterus,cough,0.0239145
+saliva,convulsions,0.0460344
+severe headache,nose bleeds,0.3534678
+sexually transmitted infection,back pain,0.0226124
+sexually transmitted infection,bloody diarrhoea,0.0209994
+sexually transmitted infection,brucellosis,0.0209994
+sexually transmitted infection,during intercourse the cervix comes out,0.031867
+sexually transmitted infection,elephantiasis,0.0209994
+sexually transmitted infection,fever,0.05785
+sexually transmitted infection,leg pain,0.0174205
+sexually transmitted infection,leg swelling,0.0179335
+sexually transmitted infection,mouth wounds,0.0209994
+sexually transmitted infection,nose bleeds,0.0179335
+sexually transmitted infection,penis wounds,0.031867
+sexually transmitted infection,prolonged menstrual periods,0.031867
+sexually transmitted infection,removed uterus,0.031867
+sickle cell,measles,0.0385091
+side abdominal pain,back pain,0.0524207
+swelling,cough,0.0239145
+swollen abdomen,blood in stool,0.0242452
+swollen cheeks,fever,0.0169762
+throat pain,diarrhoea,0.0171919
+trachoma,cough,0.0239145
+trachoma,diarrhoea,0.0205551
+tuberculosis,hiv,0.1014827
+ulcers,diabetes,0.0513906
+ulcers,sexually transmitted infection,0.0303496
+ulcers,typhoid,0.0258386
+uncontrolled urinating,back pain,0.0287435
+vomiting,blood in stool,0.0332168
+vomiting,bloody diarrhoea,0.0191066
+vomiting,convulsions,0.1147533
+vomiting,diarrhoea,0.0759342
+vomiting,fever,0.1282406
+vomiting blood,asthma,0.0397288
+weight loss,cancer,0.0206837
+weight loss,convulsions,0.031389
+weight loss,fever,0.0409606
+weight loss,leg swelling,0.0170519
+weight loss,prolonged menstrual periods,0.0567498
+weight loss,vomiting,0.0467888
+wheezing,asthma,0.0359559
+wheezing,back pain,0.0235316
+wheezing,blood in septum,0.0501497
+wheezing,blood in stool,0.0211851
+wheezing,cancer,0.0176613
+wheezing,cough,0.0873571
+wheezing,prolonged menstrual periods,0.0501497
+worms,body itching,0.0291174
+yellow fever,convulsions,0.0248448
+yellow fever,measles,0.0686809
+blood in cough,blood in stool,0.0416236
+blood in cough,penis wounds,0.079893
+blood in cough,wheezing,0.0243483
+blood in urine,blood in septum,0.0826309
+blood in urine,blood in stool,0.1124254
+blood in urine,wheezing,0.0177147
+blood in urine,yellow fever,0.0467437
+blood in urine,blood in cough,0.0434453
+chills,convulsions,0.0601091
+chills,cough,0.0346944
+chills,fever,0.466978
+chills,malaria,0.1222895
+chills,sexually transmitted infection,0.0781139
+chills,vomiting,0.1175315
+chills,weight loss,0.0700487
+difficulty seeing,asthma,0.0209652
+difficulty seeing,cough,0.0324212
+difficulty seeing,difficulty breathing,0.0534323
+difficulty seeing,leg paralysis,0.0293565
+difficulty seeing,sexually transmitted infection,0.0487858
+difficulty seeing,throat pain,0.0795095
+difficulty seeing,weight loss,0.0247733
+difficulty seeing,wheezing,0.0390439
+difficulty seeing,blood in urine,0.0163078
+itchy rash,appendicitis,0.0214713
+itchy rash,blood in stool,0.0277176
+itchy rash,cough,0.0316312
+itchy rash,diarrhoea,0.0165129
+itchy rash,difficulty breathing,0.0324926
+itchy rash,fever,0.036906
+itchy rash,sexually transmitted infection,0.0510358
+itchy rash,wheezing,0.0217733
+itchy rash,blood in urine,0.0233616
+loss of appetite,arthritis,0.0410155
+loss of appetite,asthma,0.0251805
+loss of appetite,blood in stool,0.0455693
+loss of appetite,boils,0.0278237
+loss of appetite,cancer,0.0307405
+loss of appetite,cough,0.0325003
+loss of appetite,deaf,0.0278109
+loss of appetite,fever,0.0906603
+loss of appetite,sexually transmitted infection,0.0473641
+loss of appetite,vomiting,0.0780719
+loss of appetite,weight loss,0.207903
+loss of appetite,wheezing,0.02578
+loss of appetite,chills,0.1230391
+loss of appetite,difficulty seeing,0.0315326
+loss of appetite,itchy rash,0.0427115
+needs help walking,arthritis,0.0695207
+needs help walking,general body weakness,0.0167668
+needs help walking,swollen abdomen,0.0193238
+needs help walking,wheezing,0.0419283
+needs help walking,difficulty seeing,0.1048627
+needs help walking,itchy rash,0.0182044
+needs help walking,loss of appetite,0.0209075
+ears get puss,headache,0.0272382
+eye pain,headache,0.0272382
+grumbling stomach,back pain,0.0287435
+grumbling stomach,headache,0.029988
+irregular menstrual cycle,abdominal pain,0.0299826
+nose problem,ear problem,0.3332411
