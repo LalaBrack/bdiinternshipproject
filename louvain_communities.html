@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "blue", "id": "cancer", "label": "cancer", "shape": "dot", "size": 11.176470588235293}, {"color": "red", "id": "asthma", "label": "asthma", "shape": "dot", "size": 19.411764705882355}, {"color": "blue", "id": "chest pain", "label": "chest pain", "shape": "dot", "size": 11.176470588235293}, {"color": "blue", "id": "back pain", "label": "back pain", "shape": "dot", "size": 17.352941176470587}, {"color": "red", "id": "cough", "label": "cough", "shape": "dot", "size": 29.705882352941178}, {"color": "orange", "id": "blood in septum", "label": "blood in septum", "shape": "dot", "size": 9.117647058823529}, {"color": "magenta", "id": "convulsions", "label": "convulsions", "shape": "dot", "size": 19.411764705882355}, {"color": "magenta", "id": "diarrhoea", "label": "diarrhoea", "shape": "dot", "size": 19.411764705882355}, {"color": "magenta", "id": "baldness", "label": "baldness", "shape": "dot", "size": 5.0}, {"color": "orange", "id": "blood in stool", "label": "blood in stool", "shape": "dot", "size": 21.470588235294116}, {"color": "red", "id": "difficulty breathing", "label": "difficulty breathing", "shape": "dot", "size": 11.176470588235293}, {"color": "blue", "id": "eye problem", "label": "eye problem", "shape": "dot", "size": 5.0}, {"color": "magenta", "id": "fever", "label": "fever", "shape": "dot", "size": 25.58823529411765}, {"color": "blue", "id": "general pain", "label": "general pain", "shape": "dot", "size": 13.235294117647058}, {"color": "blue", "id": "headache", "label": "headache", "shape": "dot", "size": 11.176470588235293}, {"color": "blue", "id": "dehydration", "label": "dehydration", "shape": "dot", "size": 5.0}, {"color": "red", "id": "hydrocele", "label": "hydrocele", "shape": "dot", "size": 5.0}, {"color": "green", "id": "hypertension", "label": "hypertension", "shape": "dot", "size": 5.0}, {"color": "green", "id": "diabetes", "label": "diabetes", "shape": "dot", "size": 7.0588235294117645}, {"color": "blue", "id": "joint pain", "label": "joint pain", "shape": "dot", "size": 7.0588235294117645}, {"color": "blue", "id": "leprosy", "label": "leprosy", "shape": "dot", "size": 5.0}, {"color": "magenta", "id": "malaria", "label": "malaria", "shape": "dot", "size": 7.0588235294117645}, {"color": "magenta", "id": "nausea", "label": "nausea", "shape": "dot", "size": 5.0}, {"color": "yellow", "id": "nose bleeds", "label": "nose bleeds", "shape": "dot", "size": 13.235294117647058}, {"color": "orange", "id": "measles", "label": "measles", "shape": "dot", "size": 11.176470588235293}, {"color": "yellow", "id": "persistent cough", "label": "persistent cough", "shape": "dot", "size": 5.0}, {"color": "orange", "id": "pneumonia", "label": "pneumonia", "shape": "dot", "size": 5.0}, {"color": "green", "id": "removed uterus", "label": "removed uterus", "shape": "dot", "size": 7.0588235294117645}, {"color": "magenta", "id": "saliva", "label": "saliva", "shape": "dot", "size": 5.0}, {"color": "yellow", "id": "severe headache", "label": "severe headache", "shape": "dot", "size": 5.0}, {"color": "green", "id": "sexually transmitted infection", "label": "sexually transmitted infection", "shape": "dot", "size": 40.0}, {"color": "green", "id": "bloody diarrhoea", "label": "bloody diarrhoea", "shape": "dot", "size": 7.0588235294117645}, {"color": "green", "id": "brucellosis", "label": "brucellosis", "shape": "dot", "size": 5.0}, {"color": "green", "id": "during intercourse the cervix comes out", "label": "during intercourse the cervix comes out", "shape": "dot", "size": 5.0}, {"color": "green", "id": "elephantiasis", "label": "elephantiasis", "shape": "dot", "size": 5.0}, {"color": "green", "id": "leg pain", "label": "leg pain", "shape": "dot", "size": 5.0}, {"color": "green", "id": "leg swelling", "label": "leg swelling", "shape": "dot", "size": 7.0588235294117645}, {"color": "green", "id": "mouth wounds", "label": "mouth wounds", "shape": "dot", "size": 5.0}, {"color": "orange", "id": "penis wounds", "label": "penis wounds", "shape": "dot", "size": 7.0588235294117645}, {"color": "blue", "id": "prolonged menstrual periods", "label": "prolonged menstrual periods", "shape": "dot", "size": 9.117647058823529}, {"color": "orange", "id": "sickle cell", "label": "sickle cell", "shape": "dot", "size": 5.0}, {"color": "blue", "id": "side abdominal pain", "label": "side abdominal pain", "shape": "dot", "size": 5.0}, {"color": "red", "id": "swelling", "label": "swelling", "shape": "dot", "size": 5.0}, {"color": "orange", "id": "swollen abdomen", "label": "swollen abdomen", "shape": "dot", "size": 7.0588235294117645}, {"color": "magenta", "id": "swollen cheeks", "label": "swollen cheeks", "shape": "dot", "size": 5.0}, {"color": "red", "id": "throat pain", "label": "throat pain", "shape": "dot", "size": 7.0588235294117645}, {"color": "red", "id": "trachoma", "label": "trachoma", "shape": "dot", "size": 7.0588235294117645}, {"color": "green", "id": "ulcers", "label": "ulcers", "shape": "dot", "size": 9.117647058823529}, {"color": "green", "id": "typhoid", "label": "typhoid", "shape": "dot", "size": 5.0}, {"color": "blue", "id": "uncontrolled urinating", "label": "uncontrolled urinating", "shape": "dot", "size": 5.0}, {"color": "magenta", "id": "vomiting", "label": "vomiting", "shape": "dot", "size": 19.411764705882355}, {"color": "red", "id": "vomiting blood", "label": "vomiting blood", "shape": "dot", "size": 5.0}, {"color": "blue", "id": "weight loss", "label": "weight loss", "shape": "dot", "size": 21.470588235294116}, {"color": "red", "id": "wheezing", "label": "wheezing", "shape": "dot", "size": 29.705882352941178}, {"color": "orange", "id": "yellow fever", "label": "yellow fever", "shape": "dot", "size": 9.117647058823529}, {"color": "orange", "id": "blood in cough", "label": "blood in cough", "shape": "dot", "size": 11.176470588235293}, {"color": "orange", "id": "blood in urine", "label": "blood in urine", "shape": "dot", "size": 17.352941176470587}, {"color": "magenta", "id": "chills", "label": "chills", "shape": "dot", "size": 19.411764705882355}, {"color": "red", "id": "difficulty seeing", "label": "difficulty seeing", "shape": "dot", "size": 25.58823529411765}, {"color": "red", "id": "leg paralysis", "label": "leg paralysis", "shape": "dot", "size": 5.0}, {"color": "red", "id": "itchy rash", "label": "itchy rash", "shape": "dot", "size": 25.58823529411765}, {"color": "red", "id": "appendicitis", "label": "appendicitis", "shape": "dot", "size": 5.0}, {"color": "blue", "id": "loss of appetite", "label": "loss of appetite", "shape": "dot", "size": 35.88235294117647}, {"color": "red", "id": "arthritis", "label": "arthritis", "shape": "dot", "size": 7.0588235294117645}, {"color": "blue", "id": "boils", "label": "boils", "shape": "dot", "size": 5.0}, {"color": "blue", "id": "deaf", "label": "deaf", "shape": "dot", "size": 5.0}, {"color": "red", "id": "needs help walking", "label": "needs help walking", "shape": "dot", "size": 17.352941176470587}, {"color": "red", "id": "general body weakness", "label": "general body weakness", "shape": "dot", "size": 5.0}, {"color": "blue", "id": "ears get puss", "label": "ears get puss", "shape": "dot", "size": 5.0}, {"color": "blue", "id": "eye pain", "label": "eye pain", "shape": "dot", "size": 5.0}, {"color": "blue", "id": "grumbling stomach", "label": "grumbling stomach", "shape": "dot", "size": 7.0588235294117645}]);
+                  edges = new vis.DataSet([{"from": "cancer", "to": "asthma", "value": 0.0268981}, {"from": "cancer", "to": "weight loss", "value": 0.0206837}, {"from": "cancer", "to": "wheezing", "value": 0.0176613}, {"from": "cancer", "to": "loss of appetite", "value": 0.0307405}, {"from": "asthma", "to": "difficulty breathing", "value": 0.0707625}, {"from": "asthma", "to": "hydrocele", "value": 0.0339186}, {"from": "asthma", "to": "nose bleeds", "value": 0.0226048}, {"from": "asthma", "to": "vomiting blood", "value": 0.0397288}, {"from": "asthma", "to": "wheezing", "value": 0.0359559}, {"from": "asthma", "to": "difficulty seeing", "value": 0.0209652}, {"from": "asthma", "to": "loss of appetite", "value": 0.0251805}, {"from": "chest pain", "to": "back pain", "value": 0.0234384}, {"from": "chest pain", "to": "eye problem", "value": 0.0399444}, {"from": "chest pain", "to": "general pain", "value": 0.0434014}, {"from": "chest pain", "to": "joint pain", "value": 0.0172661}, {"from": "back pain", "to": "general pain", "value": 0.0187106}, {"from": "back pain", "to": "sexually transmitted infection", "value": 0.0226124}, {"from": "back pain", "to": "side abdominal pain", "value": 0.0524207}, {"from": "back pain", "to": "uncontrolled urinating", "value": 0.0287435}, {"from": "back pain", "to": "wheezing", "value": 0.0235316}, {"from": "back pain", "to": "grumbling stomach", "value": 0.0287435}, {"from": "cough", "to": "blood in septum", "value": 0.0239145}, {"from": "cough", "to": "convulsions", "value": 0.0225457}, {"from": "cough", "to": "diarrhoea", "value": 0.025999}, {"from": "cough", "to": "difficulty breathing", "value": 0.0239145}, {"from": "cough", "to": "fever", "value": 0.0752527}, {"from": "cough", "to": "removed uterus", "value": 0.0239145}, {"from": "cough", "to": "swelling", "value": 0.0239145}, {"from": "cough", "to": "trachoma", "value": 0.0239145}, {"from": "cough", "to": "wheezing", "value": 0.0873571}, {"from": "cough", "to": "chills", "value": 0.0346944}, {"from": "cough", "to": "difficulty seeing", "value": 0.0324212}, {"from": "cough", "to": "itchy rash", "value": 0.0316312}, {"from": "cough", "to": "loss of appetite", "value": 0.0325003}, {"from": "blood in septum", "to": "wheezing", "value": 0.0501497}, {"from": "blood in septum", "to": "blood in urine", "value": 0.0826309}, {"from": "convulsions", "to": "fever", "value": 0.0771981}, {"from": "convulsions", "to": "nausea", "value": 0.0460344}, {"from": "convulsions", "to": "saliva", "value": 0.0460344}, {"from": "convulsions", "to": "vomiting", "value": 0.1147533}, {"from": "convulsions", "to": "weight loss", "value": 0.031389}, {"from": "convulsions", "to": "yellow fever", "value": 0.0248448}, {"from": "convulsions", "to": "chills", "value": 0.0601091}, {"from": "diarrhoea", "to": "baldness", "value": 0.0205551}, {"from": "diarrhoea", "to": "blood in stool", "value": 0.0687159}, {"from": "diarrhoea", "to": "fever", "value": 0.0287206}, {"from": "diarrhoea", "to": "throat pain", "value": 0.0171919}, {"from": "diarrhoea", "to": "trachoma", "value": 0.0205551}, {"from": "diarrhoea", "to": "vomiting", "value": 0.0759342}, {"from": "diarrhoea", "to": "itchy rash", "value": 0.0165129}, {"from": "blood in stool", "to": "general pain", "value": 0.020946}, {"from": "blood in stool", "to": "swollen abdomen", "value": 0.0242452}, {"from": "blood in stool", "to": "vomiting", "value": 0.0332168}, {"from": "blood in stool", "to": "wheezing", "value": 0.0211851}, {"from": "blood in stool", "to": "blood in cough", "value": 0.0416236}, {"from": "blood in stool", "to": "blood in urine", "value": 0.1124254}, {"from": "blood in stool", "to": "itchy rash", "value": 0.0277176}, {"from": "blood in stool", "to": "loss of appetite", "value": 0.0455693}, {"from": "difficulty breathing", "to": "difficulty seeing", "value": 0.0534323}, {"from": "difficulty breathing", "to": "itchy rash", "value": 0.0324926}, {"from": "fever", "to": "malaria", "value": 0.1195236}, {"from": "fever", "to": "sexually transmitted infection", "value": 0.05785}, {"from": "fever", "to": "swollen cheeks", "value": 0.0169762}, {"from": "fever", "to": "vomiting", "value": 0.1282406}, {"from": "fever", "to": "weight loss", "value": 0.0409606}, {"from": "fever", "to": "chills", "value": 0.466978}, {"from": "fever", "to": "itchy rash", "value": 0.036906}, {"from": "fever", "to": "loss of appetite", "value": 0.0906603}, {"from": "general pain", "to": "joint pain", "value": 0.0415641}, {"from": "general pain", "to": "leprosy", "value": 0.2354821}, {"from": "headache", "to": "dehydration", "value": 0.0174654}, {"from": "headache", "to": "ears get puss", "value": 0.0272382}, {"from": "headache", "to": "eye pain", "value": 0.0272382}, {"from": "headache", "to": "grumbling stomach", "value": 0.029988}, {"from": "hypertension", "to": "diabetes", "value": 0.0300926}, {"from": "diabetes", "to": "ulcers", "value": 0.0513906}, {"from": "malaria", "to": "chills", "value": 0.1222895}, {"from": "nose bleeds", "to": "measles", "value": 0.0410473}, {"from": "nose bleeds", "to": "persistent cough", "value": 0.1764587}, {"from": "nose bleeds", "to": "severe headache", "value": 0.3534678}, {"from": "nose bleeds", "to": "sexually transmitted infection", "value": 0.0179335}, {"from": "measles", "to": "pneumonia", "value": 0.0202504}, {"from": "measles", "to": "sickle cell", "value": 0.0385091}, {"from": "measles", "to": "yellow fever", "value": 0.0686809}, {"from": "removed uterus", "to": "sexually transmitted infection", "value": 0.031867}, {"from": "sexually transmitted infection", "to": "bloody diarrhoea", "value": 0.0209994}, {"from": "sexually transmitted infection", "to": "brucellosis", "value": 0.0209994}, {"from": "sexually transmitted infection", "to": "during intercourse the cervix comes out", "value": 0.031867}, {"from": "sexually transmitted infection", "to": "elephantiasis", "value": 0.0209994}, {"from": "sexually transmitted infection", "to": "leg pain", "value": 0.0174205}, {"from": "sexually transmitted infection", "to": "leg swelling", "value": 0.0179335}, {"from": "sexually transmitted infection", "to": "mouth wounds", "value": 0.0209994}, {"from": "sexually transmitted infection", "to": "penis wounds", "value": 0.031867}, {"from": "sexually transmitted infection", "to": "prolonged menstrual periods", "value": 0.031867}, {"from": "sexually transmitted infection", "to": "ulcers", "value": 0.0303496}, {"from": "sexually transmitted infection", "to": "chills", "value": 0.0781139}, {"from": "sexually transmitted infection", "to": "difficulty seeing", "value": 0.0487858}, {"from": "sexually transmitted infection", "to": "itchy rash", "value": 0.0510358}, {"from": "sexually transmitted infection", "to": "loss of appetite", "value": 0.0473641}, {"from": "bloody diarrhoea", "to": "vomiting", "value": 0.0191066}, {"from": "leg swelling", "to": "weight loss", "value": 0.0170519}, {"from": "penis wounds", "to": "blood in cough", "value": 0.079893}, {"from": "prolonged menstrual periods", "to": "weight loss", "value": 0.0567498}, {"from": "prolonged menstrual periods", "to": "wheezing", "value": 0.0501497}, {"from": "swollen abdomen", "to": "needs help walking", "value": 0.0193238}, {"from": "throat pain", "to": "difficulty seeing", "value": 0.0795095}, {"from": "ulcers", "to": "typhoid", "value": 0.0258386}, {"from": "vomiting", "to": "weight loss", "value": 0.0467888}, {"from": "vomiting", "to": "chills", "value": 0.1175315}, {"from": "vomiting", "to": "loss of appetite", "value": 0.0780719}, {"from": "weight loss", "to": "chills", "value": 0.0700487}, {"from": "weight loss", "to": "difficulty seeing", "value": 0.0247733}, {"from": "weight loss", "to": "loss of appetite", "value": 0.207903}, {"from": "wheezing", "to": "blood in cough", "value": 0.0243483}, {"from": "wheezing", "to": "blood in urine", "value": 0.0177147}, {"from": "wheezing", "to": "difficulty seeing", "value": 0.0390439}, {"from": "wheezing", "to": "itchy rash", "value": 0.0217733}, {"from": "wheezing", "to": "loss of appetite", "value": 0.02578}, {"from": "wheezing", "to": "needs help walking", "value": 0.0419283}, {"from": "yellow fever", "to": "blood in urine", "value": 0.0467437}, {"from": "blood in cough", "to": "blood in urine", "value": 0.0434453}, {"from": "blood in urine", "to": "difficulty seeing", "value": 0.0163078}, {"from": "blood in urine", "to": "itchy rash", "value": 0.0233616}, {"from": "chills", "to": "loss of appetite", "value": 0.1230391}, {"from": "difficulty seeing", "to": "leg paralysis", "value": 0.0293565}, {"from": "difficulty seeing", "to": "loss of appetite", "value": 0.0315326}, {"from": "difficulty seeing", "to": "needs help walking", "value": 0.1048627}, {"from": "itchy rash", "to": "appendicitis", "value": 0.0214713}, {"from": "itchy rash", "to": "loss of appetite", "value": 0.0427115}, {"from": "itchy rash", "to": "needs help walking", "value": 0.0182044}, {"from": "loss of appetite", "to": "arthritis", "value": 0.0410155}, {"from": "loss of appetite", "to": "boils", "value": 0.0278237}, {"from": "loss of appetite", "to": "deaf", "value": 0.0278109}, {"from": "loss of appetite", "to": "needs help walking", "value": 0.0209075}, {"from": "arthritis", "to": "needs help walking", "value": 0.0695207}, {"from": "needs help walking", "to": "general body weakness", "value": 0.0167668}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
